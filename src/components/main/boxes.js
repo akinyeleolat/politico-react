@@ -17,5 +17,6 @@ class Boxes extends Component{
             </section>
           )
     }
-   };
+   }
    export default Boxes;
+   

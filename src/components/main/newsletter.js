@@ -13,5 +13,6 @@ class Newsletter extends Component{
         </section>
       )
     }
-   };
+   }
    export default Newsletter;
+   
