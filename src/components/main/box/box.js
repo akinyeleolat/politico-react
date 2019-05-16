@@ -11,5 +11,6 @@ class Box extends Component{
         </div>
       )
     }
-   };
+   }
    export default Box;
+  

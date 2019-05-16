@@ -14,5 +14,6 @@ class Showcase extends Component{
         </div>
       )
     }
-   };
+   }
    export default Showcase;
+   
