@@ -3,11 +3,11 @@ import Box from './box/box';
 import BoxItem from './box/boxItem';
 class Boxes extends Component{
     render(){
-        let i;
         let boxList=[]
-        for(i=0;i<BoxItem.length;i++){
-            boxList.push(<Box title = {BoxItem[i].title} imageUri={BoxItem[i].imageUri} desc={BoxItem[i].desc}/>);
-        }
+        BoxItem.map(item => {
+            boxList.push(<Box title = {item.title} imageUri={item.imageUri} desc={item.desc}/>);
+            return boxList;
+        });
         return (
             <section id="boxes">
                 <div className="container">
