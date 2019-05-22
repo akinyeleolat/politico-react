@@ -1,16 +1,16 @@
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
+import BoxList from './boxList';
 class Box extends Component{
     render(){
-      return (
-        <div>
-            <div className="box">
-                    <h3>{this.props.title}</h3>
-                    <img  ref="image" src={this.props.imageUri} />
-                    <p>{this.props.desc}</p>
-                </div>
-        </div>
+      return this.props.boxItem.map((item)=>(
+        <BoxList key={item.id} item={item}/>
       )
-    }
+      );
    }
+  }
+  Box.propTypes = {
+    boxItem: PropTypes.array.isRequired
+  }
    export default Box;
   
