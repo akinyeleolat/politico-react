@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { NavLink, HashRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class RightComponent extends Component{
@@ -40,11 +40,9 @@ class RightComponent extends Component{
                 <p><input type="password" id="password" placeholder="Password" required/><input type="password" id="confirm_password" placeholder="Confirm Password" required/></p>
                 <div id="responseMessage"></div>
                 <p><input type="submit" value="Sign Up" className="button_1"/></p>
-                <HashRouter>
                 <div>
-                <p>Existing User! <NavLink to="/login">Sign In</NavLink></p>
+                <p>Existing User! <Link to="/login">Sign In</Link></p>
                 </div>
-                </HashRouter>
             </form>
         </div>
         </div>

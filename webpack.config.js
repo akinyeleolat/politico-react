@@ -1,14 +1,15 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const config =  {
-   entry: path.join(__dirname, 'src', 'index.js'),
+module.exports =  {
+   entry: path.join(__dirname, 'src', 'index.jsx'),
    output: {
        path: path.join(__dirname, 'build'),
        filename: 'bundle.js',
    },
    mode: process.env.NODE_ENV || 'development',
    resolve: {
+       extensions: ['.jsx', '.js'],
        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
    },
    devServer: {
@@ -16,15 +17,26 @@ const config =  {
    },
    plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'dist', 'index.html')
+            template: path.join(__dirname, 'src', 'index.html')
         }),
    ],
    module: {
        rules: [
            {
-               test: /\.(js|jsx)$/,
+               test:  /\.js?$|.jsx?$/,
                exclude: /node_modules/,
-               use: ['babel-loader'],
+               use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env', '@babel/preset-react'],
+                  plugins: [
+                    '@babel/plugin-proposal-class-properties',
+                    '@babel/plugin-proposal-object-rest-spread',
+                    '@babel/plugin-transform-arrow-functions',
+                    '@babel/plugin-transform-runtime'
+                  ]
+                }
+              }
            },
            {
                test: /\.(css|scss)$/,
@@ -41,4 +53,3 @@ const config =  {
        ]
    }
 };
-export default config;

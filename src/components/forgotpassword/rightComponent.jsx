@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Link, HashRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 class RightComponent extends Component{
     render(){
       return (
@@ -7,21 +7,17 @@ class RightComponent extends Component{
                 <div className="pageform">
                 <form id="loginForm">
                 <img src="./img/thumb2.jpg" width="100px"/>
-                <h1>Sign in to Politico</h1>
-                <p><input type="email" id="email" placeholder="Email" required/></p>
-                <p><input type="password" id="password" placeholder="Password" required/></p>
-                <p><input type="submit" id="loginBtn" value="Login" className="button_1"/></p>
+                <h1>Forgot Password</h1>
+                <p><input type="email" placeholder="Email" required/></p>
+                <p><input type="submit" value="Reset Password" className="button_1"/></p>
                 <p id="responseMsg"></p>
-                <HashRouter>
                 <div>
                 <p className="alignTxtRight">
                 <Link to="/"><i className="fas fa-home"></i> HOME</Link> | 
                 <Link to="/signup">CREATE ACCOUNT</Link> | 
-                <Link to="/forgotpassword">Forgot
-                            Password</Link>
+                <Link to="/login">SIGN IN</Link>
                         </p>
                 </div>
-                </HashRouter>
             </form>
         </div>
         </div>
