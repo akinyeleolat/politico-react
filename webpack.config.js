@@ -1,37 +1,13 @@
-const webpack = require('webpack');
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
-  output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  }
+/* eslint-disable no-console */
+const webpackMerge = require("webpack-merge");
+const commonConfig = require("./webpack.common");
+
+module.exports = env => {
+  let envConfig;
+  !env.mode
+    ? (envConfig = require(`./webpack-build-utils/webpack.development`))
+    : (envConfig = require(`./webpack-build-utils/webpack.${env.mode}`));
+
+  console.log(env);
+  return webpackMerge({ mode: env.mode }, commonConfig, envConfig);
 };
