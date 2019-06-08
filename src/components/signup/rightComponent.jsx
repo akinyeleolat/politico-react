@@ -32,7 +32,7 @@ class RightComponent extends Component{
         <div id="right">
                 <div className="pageform">
                 <form id="loginForm">
-                <img src="./img/thumb2.jpg" width="100px"></img>
+                <img src="./src/img/thumb2.jpg" width="100px"></img>
                 <h1>Create Account</h1>
                 <p className="alignTxtRight"><a href="#" id="upload_widget_opener"><button className="button_3">Upload Passport</button></a></p>
                 <p><input type="text" id="lastname" placeholder="Last Name" required/><input type="text" id="firstname" placeholder="First Name" required/></p>

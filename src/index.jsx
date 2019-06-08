@@ -5,7 +5,7 @@ import Layout from './layout';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import ForgotPassword from './pages/forgotPassword';
-import './index.scss';
+import './index.css';
 
 const app = document.getElementById('app');
 ReactDOM.render(

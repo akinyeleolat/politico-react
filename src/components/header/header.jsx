@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
-import './header.scss'
+import './header.css'
 class Header extends Component{
     render(){
       return (
         <div className='header'>
         <div className="container">
             <div id="branding">
-                <h1><img src="img/thumb1.png" width="30px"></img><span className="highlight">Politico</span> </h1>
+                <h1><img src="./src/img/thumb1.png" width="30px"/><span className="highlight">Politico</span> </h1>
             </div>
             <nav>
                 <ul>
