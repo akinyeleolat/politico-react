@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import LeftComponent from '../leftComponent';
-import RightComponent from './rightComponent';
+import RightComponent from '../rightComponent';
 import signUpLeftItem from './signUpLeftItem';
+import SignUpRightComponent from './signUpRightComponent';
 import './signup.css';
 class SignUpComponent extends Component{
   constructor(){
@@ -11,12 +12,13 @@ class SignUpComponent extends Component{
     }
 }
     render(){
+      const SignUpRightItem = RightComponent(SignUpRightComponent);
       return (
         <div className="wallpaper">
         <main className="content">
         <div className="container" id="wrap">
         <LeftComponent item={this.state.signUpLeftItem}/>
-        <RightComponent/>
+        <SignUpRightItem/>
         </div>
         </main>
         </div>

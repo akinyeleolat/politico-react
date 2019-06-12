@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: "./src/index.jsx",
@@ -9,14 +10,18 @@ module.exports = {
     filename: "[name].chunk.js"
   },
   resolve: {
-    extensions: [".jsx", ".js"]
+    extensions: [".jsx", ".js"],
+    alias: {
+      Images: path.resolve(__dirname, 'src/img/')
+    }
   },
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       inject: "body"
-    })
+    }),
+    new Dotenv()
   ],
   module: {
     rules: [
@@ -43,6 +48,10 @@ module.exports = {
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         loader: ["file-loader"]
+      },
+      {
+        test: /\.js$/,
+        use: ['babel-loader', 'eslint-loader']
       }
     ]
   }

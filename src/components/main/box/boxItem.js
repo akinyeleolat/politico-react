@@ -1,6 +1,6 @@
-import boxImg1 from "./../../../img/userProfile.jpg";
-import boxImg2 from "./../../../img/userProfile2.jpg";
-import boxImg3 from "./../../../img/thumb3.jpg";
+import boxImg1 from 'Images/userProfile.jpg';
+import boxImg2 from 'Images/userProfile2.jpg';
+import boxImg3 from 'Images/thumb3.jpg';
 
 const boxItem = [
   {
