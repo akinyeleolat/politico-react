@@ -1,13 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import uploadParam from './uploadParam';
 export default class uploadImage extends Component {
   constructor(){
     super();
-    this.state={
-      imageUrl:''
-    }
   }
-   
   upload(){
     const widgetOpener = document.getElementById('upload_widget_opener');
     let image;
@@ -16,9 +13,7 @@ export default class uploadImage extends Component {
   if (result && result.event === 'success') {
     /*Get image Url*/
     image = result.info.url;
-    this.setState (() =>({
-      imageUrl:image,
-    }))
+    this.props.getUrl(image)
   }
 })
   }  
@@ -39,4 +34,7 @@ export default class uploadImage extends Component {
             </Fragment>
         )
     }
+}
+uploadImage.propTypes = {
+  getUrl: PropTypes.func.isRequired
 }
