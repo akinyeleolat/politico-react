@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
+import logo from './../../img/thumb1.png';
 import { Link } from 'react-router-dom';
+import Nav from './../navBar/';
 import './header.css'
 class Header extends Component{
     render(){
@@ -7,14 +9,9 @@ class Header extends Component{
         <div className='header'>
         <div className="container">
             <div id="branding">
-                <h1><img src="./src/img/thumb1.png" width="30px"/><span className="highlight">Politico</span> </h1>
+            <Link to="/"><h1><img src={logo} width="30px"/><span className="highlight">Politico</span> </h1></Link>
             </div>
-            <nav>
-                <ul>
-                    <li><i className="fas fa-home"></i><Link to="/login">Login</Link></li>
-                    <li><i className="fas fa-plus-circle"></i><Link to="/signup">Sign Up</Link></li>
-                    </ul>
-            </nav>
+            <Nav/>
         </div>
         </div>
       )
