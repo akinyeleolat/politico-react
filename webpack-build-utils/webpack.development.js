@@ -4,7 +4,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 9000,
-    publicPath: '/',
+    publicPath: '/'
   },
-  plugins: [new ErrorOverlayPlugin()],
+  plugins: [new ErrorOverlayPlugin()]
 };

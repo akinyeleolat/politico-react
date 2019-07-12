@@ -7,23 +7,23 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, './src'),
-    filename: '[name].chunk.js',
+    filename: '[name].chunk.js'
   },
   resolve: {
     extensions: ['.jsx', '.js'],
     alias: {
       Images: path.resolve(__dirname, 'src/img/'),
       Components: path.resolve(__dirname, 'src/components/'),
-      Actions: path.resolve(__dirname, 'src/actions/'),
-    },
+      Actions: path.resolve(__dirname, 'src/actions/')
+    }
   },
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body',
+      inject: 'body'
     }),
-    new Dotenv(),
+    new Dotenv()
   ],
   module: {
     rules: [
@@ -38,23 +38,23 @@ module.exports = {
               '@babel/plugin-proposal-object-rest-spread',
               '@babel/plugin-proposal-class-properties',
               '@babel/plugin-transform-runtime',
-              '@babel/plugin-transform-arrow-functions',
-            ],
-          },
-        },
+              '@babel/plugin-transform-arrow-functions'
+            ]
+          }
+        }
       },
       {
         test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        loader: ['file-loader'],
+        loader: ['file-loader']
       },
       {
         test: /\.js$/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
-    ],
-  },
+        use: ['babel-loader', 'eslint-loader']
+      }
+    ]
+  }
 };

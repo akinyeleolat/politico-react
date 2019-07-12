@@ -10,7 +10,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      errors:{},
+      errors: {},
       isLoading: false,
       invalid: false,
       redirect: false
@@ -20,86 +20,100 @@ class LoginForm extends Component {
     this.isValid = this.isValid.bind(this);
   }
 
-    onChange (e){
-        this.setState({[e.target.name]: e.target.value})
-       }
-    
-    isValid(){
-        const { errors, isValid }= ValidateInput(this.state);
-        if(!isValid){
-            this.setState({errors})
-        }
-        return isValid;
-       }
-      
-       onSubmit(e){
-        e.preventDefault();
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-        if(this.isValid()){
-           this.setState({errors:{}, isLoading: true})
-           this.props.userLoginRequest(this.state)
-           .then(
-               ()=>{
-                   this.setState({ redirect: true })
-               },
-               (error) => {
-                 this.setState({ errors: error.response.data, isLoading: false });
-                 const { errors } = this.state;
-                 const displayServerError = errors.error;
-                 this.props.addFlashMessage({
-                   type: 'error',
-                   text: `${displayServerError}`
-                 });
-               }
-               
-               );
-        }
+  isValid() {
+    const { errors, isValid } = ValidateInput(this.state);
+    if (!isValid) {
+      this.setState({ errors });
     }
-    render() {
-        // return (
-        //  <div>  
-        //  <form onSubmit={this.onSubmit}>
-        //     <p><input type="email" name="email" value={this.state.email} onChange={this.onChange} placeholder="Email" required/></p>
-        //     <p><input type="password" name="password" value={this.state.password} onChange={this.onChange} placeholder="Password" required/></p>
-        //     <p><input type="submit" id="loginBtn" value="Login" className="button_1"/></p>
-        //     <p id="responseMsg"></p>
-        // </form>
-        // </div>  
-        // )
-        const { errors } = this.state;
+    return isValid;
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    if (this.isValid()) {
+      this.setState({ errors: {}, isLoading: true });
+      this.props.userLoginRequest(this.state).then(
+        () => {
+          this.setState({ redirect: true });
+        },
+        error => {
+          this.setState({ errors: error.response.data, isLoading: false });
+          const { errors } = this.state;
+          const displayServerError = errors.error;
+          this.props.addFlashMessage({
+            type: 'error',
+            text: `${displayServerError}`
+          });
+        }
+      );
+    }
+  }
+  render() {
+    // return (
+    //  <div>
+    //  <form onSubmit={this.onSubmit}>
+    //     <p><input type="email" name="email" value={this.state.email} onChange={this.onChange} placeholder="Email" required/></p>
+    //     <p><input type="password" name="password" value={this.state.password} onChange={this.onChange} placeholder="Password" required/></p>
+    //     <p><input type="submit" id="loginBtn" value="Login" className="button_1"/></p>
+    //     <p id="responseMsg"></p>
+    // </form>
+    // </div>
+    // )
+    const { errors } = this.state;
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to='/'/>;
-     }
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <form onSubmit={this.onSubmit}>
           <p>
-            <input type="email" name="email" value={this.state.email} onChange={this.onChange} placeholder="Email"/>
-            {errors.email && <span className="alerts">{errors.email}
-      </span>}
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              placeholder="Email"
+            />
+            {errors.email && <span className="alerts">{errors.email}</span>}
           </p>
           <p>
-            <input type="password" name="password"  value={this.state.password} onChange={this.onChange} placeholder="Password"/>
-            {errors.password && <span className="alerts">{errors.password}
-      </span>}
+            <input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              placeholder="Password"
+            />
+            {errors.password && (
+              <span className="alerts">{errors.password}</span>
+            )}
           </p>
-          <p><input type="submit" value="Login" disabled={this.state.isLoading || this.state.invalid} className="button_1" /></p>
+          <p>
+            <input
+              type="submit"
+              value="Login"
+              disabled={this.state.isLoading || this.state.invalid}
+              className="button_1"
+            />
+          </p>
           <div />
         </form>
-        <FlashMessagesList/>
+        <FlashMessagesList />
       </div>
     );
-    }
+  }
 }
 
 LoginForm.propTypes = {
   userLoginRequest: PropTypes.func.isRequired,
-  addFlashMessage : PropTypes.func.isRequired
+  addFlashMessage: PropTypes.func.isRequired
 };
-
-
-
 
 export default LoginForm;

@@ -1,14 +1,14 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import Footer from '../components/footer/footer';
 import SignUpComponent from '../components/signup';
-class Signup extends Component{
-    render(){
-      return (
+class Signup extends Component {
+  render() {
+    return (
       <div>
-     <SignUpComponent/>
-     <Footer/>
+        <SignUpComponent />
+        <Footer />
       </div>
-      )
-    }
-   }
-   export default Signup;
+    );
+  }
+}
+export default Signup;
