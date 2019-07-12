@@ -4,7 +4,6 @@ import isEmpty from 'lodash/isEmpty';
 export default function validateInput(data) {
   let errors = {};
 
-
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email is required';
   }
@@ -14,12 +13,9 @@ export default function validateInput(data) {
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password is required';
   }
-  
-
-
 
   return {
     errors,
     isValid: isEmpty(errors)
-  }
+  };
 }

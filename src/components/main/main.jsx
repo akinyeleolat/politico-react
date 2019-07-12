@@ -2,7 +2,7 @@ import React,{ Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Showcase from './showcase';
-import Newsletter from './newsletter';
+import Divider from './divider';
 import Boxes from './boxes';
 import './main.css';
 
@@ -13,14 +13,14 @@ class Main extends Component{
       const guestLayout = (
         <Fragment>
         <Showcase/>
-        <Newsletter/>
+        <Divider/>
         <Boxes/>
         </Fragment>
       )
 
       const userLayout =(
         <Fragment>
-        <Newsletter/>
+        <Divider/>
         <Boxes/>
         </Fragment>
       )

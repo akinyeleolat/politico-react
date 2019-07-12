@@ -1,10 +1,17 @@
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
-const validateInput = (data) => {
+const validateInput = data => {
   let errors = {};
-  const {  firstname, lastname, email, password, confirm_password, phonenumber, passporturl } = data;
-
+  const {
+    firstname,
+    lastname,
+    email,
+    password,
+    confirm_password,
+    phonenumber,
+    passporturl
+  } = data;
 
   if (Validator.isEmpty(firstname)) {
     errors.firstname = 'First Name is required';
@@ -28,20 +35,19 @@ const validateInput = (data) => {
     errors.confirm_password = 'Passwords  and Confirm Password must match';
   }
   if (Validator.isEmpty(phonenumber)) {
-    errors.phonenumber= 'Phone number is required';
+    errors.phonenumber = 'Phone number is required';
   }
   if (Validator.isEmpty(passporturl)) {
-    errors.passporturl= 'Kindly upload passport image';
+    errors.passporturl = 'Kindly upload passport image';
   }
   if (!Validator.isURL(passporturl)) {
     errors.passporturl = 'Invalid image url';
   }
 
-
   return {
     errors,
     isValid: isEmpty(errors)
-  }
-}
+  };
+};
 
 export default validateInput;

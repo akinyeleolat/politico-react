@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const webpackMerge = require("webpack-merge");
-const commonConfig = require("./webpack.common");
+const webpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
 module.exports = env => {
   let envConfig;

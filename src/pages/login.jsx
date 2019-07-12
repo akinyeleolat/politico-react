@@ -1,14 +1,14 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import Footer from '../components/footer/footer';
 import LoginComponent from '../components/login';
-class Login extends Component{
-    render(){
-      return (
+class Login extends Component {
+  render() {
+    return (
       <div>
-      <LoginComponent/>
-      <Footer/>
+        <LoginComponent />
+        <Footer />
       </div>
-      )
-    }
-   }
-   export default Login;
+    );
+  }
+}
+export default Login;
