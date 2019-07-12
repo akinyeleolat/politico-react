@@ -12,29 +12,21 @@ class NavigationBar extends React.Component {
 
   render() {
     const isAuthenticated  = this.props.isAuthenticated;
-    let username;
     let isAdmin;
-    let userPage = isAdmin ? ('/adminPage'):('/userPage');
-    let userImage;
+    // let userPage = isAdmin ? ('/adminPage'):('/userPage');
+
 
     if(isAuthenticated){
-      const { firstname, user_image } = this.props.user;
-        username = firstname.toUpperCase();
-        userImage = user_image;
         isAdmin = this.props.user.isAdmin;
     }
     
 
     const userLinks = (
-      <div>
-        <img src={userImage} width="50px"/>
-        Welcome, {username}
       <ul> 
-        <li><i className="fas fa-plus-circle"></i><Link to={userPage}>Dashboard</Link></li> 
-        <li><i className="fas fa-plus-circle"></i><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
-        
+        <li>{isAdmin && <Link to={'/admin'}><i className="fas fa-plus-circle"></i>Admin Dashboard</Link>}</li>
+        <li><i className="fas fa-plus-circle"></i><Link to={'/profile'}>View Profile</Link></li>  
+        <li><i className="fas fa-sign-out-alt"></i><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
       </ul>
-      </div>
     );
 
     const guestLinks = (

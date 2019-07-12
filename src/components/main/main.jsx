@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Showcase from './showcase';
 import Newsletter from './newsletter';
 import Boxes from './boxes';
-import './main.css'
+import './main.css';
+
 class Main extends Component{
     render(){
       const isAuthenticated  = this.props.isAuthenticated;
