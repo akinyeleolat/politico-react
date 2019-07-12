@@ -14,6 +14,7 @@ module.exports = {
     alias: {
       Images: path.resolve(__dirname, 'src/img/'),
       Components: path.resolve(__dirname, 'src/components/'),
+      Actions: path.resolve(__dirname, 'src/actions/'),
     },
   },
   plugins: [

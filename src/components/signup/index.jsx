@@ -4,6 +4,8 @@ import RightComponent from '../rightComponent';
 import signUpLeftItem from './signUpLeftItem';
 import SignUpRightComponent from './signUpRightComponent';
 import './signup.css';
+
+
 class SignUpComponent extends Component{
   constructor(){
     super()
@@ -25,4 +27,5 @@ class SignUpComponent extends Component{
       )
     }
    }
-   export default SignUpComponent;
+ 
+  export default SignUpComponent;
