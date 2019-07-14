@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import jwt from 'jsonwebtoken';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/authActions';
+import { getAllParty } from './actions/partyActions';
 import store from './store';
 import Layout from './layout';
 import Login from './pages/login';
@@ -19,6 +20,8 @@ if (localStorage.jwt) {
   setAuthorizationToken(localStorage.jwt);
   store.dispatch(setCurrentUser(jwt.decode(localStorage.jwt)));
 }
+store.dispatch(getAllParty());
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
