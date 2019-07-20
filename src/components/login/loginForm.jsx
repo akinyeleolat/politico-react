@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/login';
+import 'react-toastify/dist/ReactToastify.css';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -18,12 +20,17 @@ class LoginForm extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.isValid = this.isValid.bind(this);
+    this.displayError = this.displayError.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+  displayError(value) {
+    if (value) {
+      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+    }
+  }
   isValid() {
     const { errors, isValid } = ValidateInput(this.state);
     if (!isValid) {
@@ -54,16 +61,6 @@ class LoginForm extends Component {
     }
   }
   render() {
-    // return (
-    //  <div>
-    //  <form onSubmit={this.onSubmit}>
-    //     <p><input type="email" name="email" value={this.state.email} onChange={this.onChange} placeholder="Email" required/></p>
-    //     <p><input type="password" name="password" value={this.state.password} onChange={this.onChange} placeholder="Password" required/></p>
-    //     <p><input type="submit" id="loginBtn" value="Login" className="button_1"/></p>
-    //     <p id="responseMsg"></p>
-    // </form>
-    // </div>
-    // )
     const { errors } = this.state;
     const { redirect } = this.state;
 
@@ -71,42 +68,44 @@ class LoginForm extends Component {
       return <Redirect to="/" />;
     }
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <p>
-            <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.onChange}
-              placeholder="Email"
-            />
-            {errors.email && <span className="alerts">{errors.email}</span>}
-          </p>
-          <p>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.onChange}
-              placeholder="Password"
-            />
-            {errors.password && (
-              <span className="alerts">{errors.password}</span>
-            )}
-          </p>
-          <p>
-            <input
-              type="submit"
-              value="Login"
-              disabled={this.state.isLoading || this.state.invalid}
-              className="button_1"
-            />
-          </p>
-          <div />
-        </form>
-        <FlashMessagesList />
-      </div>
+      <Fragment>
+        <div>
+          <form onSubmit={this.onSubmit}>
+            <p>
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                placeholder="Email"
+              />
+              {this.displayError(errors.email)}
+            </p>
+            <p>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                placeholder="Password"
+              />
+              {this.displayError(errors.password)}
+            </p>
+            <p>
+              <input
+                type="submit"
+                value="Login"
+                disabled={this.state.isLoading || this.state.invalid}
+                className="button_1"
+              />
+            </p>
+            <div />
+          </form>
+          <div style={{ display: 'none' }}>
+            <FlashMessagesList />
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }

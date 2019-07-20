@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import logo from './../../img/thumb1.png';
 import { Link } from 'react-router-dom';
 import Nav from './../navBar/';
+import FlashMessagesList from './../../flash/flashMessagesList';
 import './header.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 class Header extends Component {
   render() {
     return (
@@ -18,6 +21,9 @@ class Header extends Component {
           </div>
           <Nav />
         </div>
+        <div style={{ display: 'none' }}>
+            <FlashMessagesList />
+          </div>
       </div>
     );
   }

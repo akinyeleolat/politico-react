@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 class FlashMessage extends Component {
   constructor(props) {
@@ -11,21 +13,16 @@ class FlashMessage extends Component {
   onClick() {
     this.props.deleteFlashMessage(this.props.message.id);
   }
-
+ 
   render() {
-    const { id, type, text } = this.props.message;
+    const { type, text } = this.props.message;
+    const options = {
+      onClose: this.onClick,
+    }
     return (
-      <div
-        className={classnames('alert', {
-          'alert-success': type === 'success',
-          'alert-danger': type === 'error'
-        })}
-      >
-        <button key={id} onClick={this.onClick} className="close">
-          <span>&times;</span>
-        </button>
-        {text}
-      </div>
+      <Fragment>
+        {type === 'success' ? toast.sucess(text,options): toast.error(text, options)}
+      </Fragment>
     );
   }
 }
