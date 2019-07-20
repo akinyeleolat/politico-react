@@ -35,13 +35,13 @@ const validateInput = data => {
     errors.confirm_password = 'Passwords  and Confirm Password must match';
   }
   if (Validator.isEmpty(phonenumber)) {
-    errors.phonenumber = 'Phone number is required';
+    errors.phonenumber = 'Phone number is required and country code';
   }
   if (Validator.isEmpty(passporturl)) {
     errors.passporturl = 'Kindly upload passport image';
   }
   if (!Validator.isURL(passporturl)) {
-    errors.passporturl = 'Invalid image url';
+    errors.passporturl = 'Kindly upload passport';
   }
 
   return {

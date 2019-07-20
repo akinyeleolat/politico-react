@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import ImageUpload from '../uploadImage';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/signup';
+import 'react-toastify/dist/ReactToastify.css';
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -25,8 +27,14 @@ class SignUpForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.setUrl = this.setUrl.bind(this);
     this.isValid = this.isValid.bind(this);
+    this.displayError = this.displayError.bind(this);
   }
 
+  displayError(value) {
+    if (value) {
+      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+    }
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -82,9 +90,7 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="Last Name"
             />
-            {errors.lastname && (
-              <span className="alerts">{errors.lastname}</span>
-            )}
+            {this.displayError(errors.lastname)}
             <input
               type="text"
               name="firstname"
@@ -92,9 +98,7 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="First Name"
             />
-            {errors.firstname && (
-              <span className="alerts">{errors.firstname}</span>
-            )}
+            {this.displayError(errors.firstname)}
           </p>
           <p>
             <input
@@ -104,9 +108,7 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="+234-phonenumber"
             />
-            {errors.phonenumber && (
-              <span className="alerts">{errors.phonenumber}</span>
-            )}
+            {this.displayError(errors.phonenumber)}
 
             <input
               type="email"
@@ -115,7 +117,7 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="Email"
             />
-            {errors.email && <span className="alerts">{errors.email}</span>}
+            {this.displayError(errors.email)}
           </p>
           <p>
             <input
@@ -125,9 +127,7 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="Password"
             />
-            {errors.password && (
-              <span className="alerts">{errors.password}</span>
-            )}
+            {this.displayError(errors.password)}
 
             <input
               type="password"
@@ -136,13 +136,9 @@ class SignUpForm extends Component {
               onChange={this.onChange}
               placeholder="Confirm Password"
             />
-            {errors.confirm_password && (
-              <span className="alerts">{errors.confirm_password}</span>
-            )}
+            {this.displayError(errors.confirm_password)}
             <br />
-            {errors.passporturl && (
-              <span className="alerts">{errors.passporturl}</span>
-            )}
+            {this.displayError(errors.passporturl)}
             <br />
           </p>
           <p>
@@ -155,7 +151,9 @@ class SignUpForm extends Component {
           </p>
           <div />
         </form>
-        <FlashMessagesList />
+        <div style={{ display: 'none' }}>
+          <FlashMessagesList />
+        </div>
       </div>
     );
   }

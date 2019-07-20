@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import FlashMessage from './flashMessage';
 import { connect } from 'react-redux';
 import { deleteFlashMessage } from '../actions/flashMessages';
 
-class FlashMessagesList extends React.Component {
+class FlashMessagesList extends Component {
   renderMessages() {
     return this.props.messages.map(message => (
       <FlashMessage
@@ -16,7 +16,7 @@ class FlashMessagesList extends React.Component {
   }
 
   render() {
-    return <div>{this.renderMessages()}</div>;
+    return <Fragment>{this.renderMessages()}</Fragment>;
   }
 }
 

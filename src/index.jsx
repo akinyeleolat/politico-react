@@ -12,6 +12,8 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import ForgotPassword from './pages/forgotPassword';
 import Profile from './pages/profile';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import './index.css';
 
 const app = document.getElementById('app');
@@ -21,7 +23,7 @@ if (localStorage.jwt) {
   store.dispatch(setCurrentUser(jwt.decode(localStorage.jwt)));
 }
 store.dispatch(getAllParty());
-
+toast.configure();
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
