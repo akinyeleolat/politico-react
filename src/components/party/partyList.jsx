@@ -6,8 +6,8 @@ import PartyCard from './partyCard';
 
 class PartyList extends Component{
     render(){
-      return this.props.partyListItem.map((party)=>(
-        <div>
+      return this.props.partyListItem.map((party, index)=>(
+        <div key={index}>
         <PartyCard key={party.id} party={party}/>
         </div>  
       )

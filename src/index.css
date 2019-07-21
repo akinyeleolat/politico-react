@@ -109,16 +109,15 @@ ul {
   margin-top: 5px;
 }
 .cloudinary-button {
-  height: 28px;
   background-color: #fff !important;
   border: 1px solid #e8491d;
   border-radius: 4px;
   padding-left: 20px;
   padding-right: 20px;
   margin-right: 0;
-  color: #e8491d;
+  color: #e8491d !important;
   cursor: pointer;
-  margin-top: 5px;
+  display: inline !important;
 }
 .button_3:hover {
   background: orangered;
@@ -207,15 +206,17 @@ select {
 #partyList .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 115px;
+  width: 150px;
   border-radius: 5px 5px 0 0;
   background: #fff;
   margin-bottom: 20px;
   float: left;
   padding: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
   border: 1px solid #ccc;
+  overflow: auto;
+  height: 270px;
 }
 
 #partyList .card:hover {
@@ -225,7 +226,7 @@ select {
 #partyList .card img {
   border-radius: 5px 5px 0 0;
   width: 100%;
-  height: 100%;
+  height: 120px;
   border-bottom: 2px solid #a12e0f;
 }
 #partyList .card button {
@@ -432,7 +433,7 @@ td {
 }
 /* modal */
 .modal {
-  display: none;
+  display: 'block';
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -873,6 +874,7 @@ ul#page_item li {
   }
   #newsletter input[type='email'],
   #newsletter input[type='text'],
+  #partyList input[type='text'],
   .quote input,
   .quote textarea,
   .pageform {
@@ -894,7 +896,7 @@ ul#page_item li {
     margin: 20px;
   }
   #partyList .card img {
-    width: 50%;
+    width: 100%;
   }
   #partyList .card button {
     width: 20%;
