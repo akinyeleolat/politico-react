@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uploadParam from './uploadParam';
 export default class uploadImage extends Component {
-  constructor() {
+  constructor(props) {
     super();
   }
   upload() {
@@ -36,7 +36,7 @@ export default class uploadImage extends Component {
             className="button_3"
             onClick={this.upload}
           >
-            Upload Image
+          {this.props.title || 'Upload Image'}
           </button>
         </p>
       </Fragment>
@@ -44,5 +44,6 @@ export default class uploadImage extends Component {
   }
 }
 uploadImage.propTypes = {
-  getUrl: PropTypes.func.isRequired
+  getUrl: PropTypes.func.isRequired,
+  title: PropTypes.string
 };

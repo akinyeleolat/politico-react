@@ -21,7 +21,7 @@ class FlashMessage extends Component {
     }
     return (
       <Fragment>
-        {type === 'success' ? toast.sucess(text,options): toast.error(text, options)}
+        {type === 'success' ? toast.success(text, options): toast.error(text, options)}
       </Fragment>
     );
   }

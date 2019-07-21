@@ -22,8 +22,12 @@ if (localStorage.jwt) {
   setAuthorizationToken(localStorage.jwt);
   store.dispatch(setCurrentUser(jwt.decode(localStorage.jwt)));
 }
+
 store.dispatch(getAllParty());
-toast.configure();
+toast.configure({
+  autoClose: 8000,
+  draggable: false,
+});
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

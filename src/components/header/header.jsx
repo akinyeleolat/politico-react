@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
 import logo from './../../img/thumb1.png';
-import { Link } from 'react-router-dom';
-import Nav from './../navBar/';
-import FlashMessagesList from './../../flash/flashMessagesList';
+import CustomNav from './../navBar/';
 import './header.css';
-import 'react-toastify/dist/ReactToastify.css';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+} from 'reactstrap';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <div className="header">
-        <div className="container">
-          <div id="branding">
-            <Link to="/">
-              <h1>
-                <img src={logo} width="30px" />
-                <span className="highlight">Politico</span>
-              </h1>
-            </Link>
-          </div>
-          <Nav />
-        </div>
-        <div style={{ display: 'none' }}>
-            <FlashMessagesList />
-          </div>
+      <div>
+        <Navbar className='header'  color="light" light expand="md">
+          <NavbarBrand href="/">
+            <div id='branding'><h2>
+              <img src={logo} width="30px" />
+              <span className="highlight">Politico</span>
+            </h2></div>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <CustomNav/>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
   }
