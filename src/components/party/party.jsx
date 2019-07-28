@@ -7,6 +7,7 @@ import PartyForm from './createPartyForm';
 import { createParty, getAllParty } from './../../actions/partyActions';
 import { addFlashMessage } from './../../actions/flashMessages';
 import Spinner from './../spinner/Spinner';
+import Modal from './../modal';
 
 class Party extends Component {
 
@@ -25,17 +26,24 @@ class Party extends Component {
     }
     return (
       <Fragment>
-        {isAdmin && (
-        <DashBoardContainer title={' Create Party'}>
+
+        <DashBoardContainer title={'Party List'} button={isAdmin && (
+          <Modal buttonLabel={'Add New Party'} title={'Create Party'} color={'danger'}>
           <PartyForm
             createParty={this.props.createParty}
             addFlashMessage={this.props.addFlashMessage}
           />
-        </DashBoardContainer>
+        </Modal>
         )
-      }
-        <DashBoardContainer title={'Party List'}>
-         { partyListItem.lenght <1 ? (<Spinner/>) : (<PartyList key={partyListItem.id} partyListItem={partyListItem} />)}
+      }>
+       
+         { partyListItem.lenght <1 ? (<Spinner/>) : (
+         <PartyList 
+         key={partyListItem.id} 
+         partyListItem={partyListItem}
+         isAdmin={isAdmin} 
+         />
+         )}
         </DashBoardContainer>
       </Fragment>
     );

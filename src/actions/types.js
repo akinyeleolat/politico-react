@@ -5,3 +5,5 @@ export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const FETCH_PARTY = 'FETCH_PARTY';
 export const ADD_PARTY = 'ADD_PARTY';
+export const EDIT_PARTY = 'EDIT_PARTY';
+export const DELETE_PARTY = 'DELETE_PARTY';

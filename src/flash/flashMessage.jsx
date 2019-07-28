@@ -17,7 +17,7 @@ class FlashMessage extends Component {
   render() {
     const { type, text } = this.props.message;
     const options = {
-      onClose: this.onClick,
+    onClose: this.onClick
     }
     return (
       <Fragment>

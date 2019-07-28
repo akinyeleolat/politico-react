@@ -5,9 +5,7 @@ const DashBoard = (props) => {
   return (
     <div className="dashboardcontainer">
     <form style={{ float: 'right' }}>
-      <button type="submit" className="button_1">
-        Search
-      </button>
+      {props.button}
     </form>
     <section id='partyList'>
       <h1>
@@ -22,6 +20,7 @@ const DashBoard = (props) => {
 DashBoard.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
+  button: PropTypes.node,
 };
 
 export default DashBoard;
