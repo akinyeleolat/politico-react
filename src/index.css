@@ -216,11 +216,13 @@ select {
   margin-left: 20px;
   border: 1px solid #ccc;
   overflow: auto;
-  height: 270px;
+  height: 350px;
+  transition: .5s all linear;
 }
 
 #partyList .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 #partyList .card img {
@@ -429,34 +431,6 @@ td {
 }
 #userList img {
   width: 80px;
-  /* margin: 5px auto; */
-}
-/* modal */
-.modal {
-  display: 'block';
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 50%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
 }
 
 @-webkit-keyframes animatetop {
@@ -493,22 +467,6 @@ td {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #a12e0f;
-  color: white;
-}
-
-.modal-body {
-  border-radius: 5px;
-}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #a12e0f;
-  color: white;
 }
 
 .sidebar {
@@ -729,6 +687,7 @@ div.content {
   margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  overflow: auto;
 }
 #boxes .box img {
   width: 90px;
@@ -760,29 +719,6 @@ ul#page_item li {
   padding: 20px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.modal button {
-  width: 100px;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  border: 1px solid #888;
-  width: 30%;
-}
 
 .close {
   color: #aaaaaa;
@@ -809,7 +745,7 @@ ul#page_item li {
 
 .openbtn:hover {
   background-color: #e8491d;
-}
+} 
 
 .profilecontainer {
   overflow: hidden;
@@ -846,9 +782,7 @@ ul#page_item li {
   header {
     padding: 20px;
   }
-  .modal-content {
-    width: 80%;
-  }
+  
   #showcase {
     min-height: auto;
     background: url(./img/vote5.jpg) no-repeat 0 0;

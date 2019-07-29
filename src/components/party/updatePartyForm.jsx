@@ -1,29 +1,27 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import UploadLogo from './../uploadImage';
 import { toast } from 'react-toastify';
 import FlashMessagesList from './../../flash/flashMessagesList';
-import ValidateInput from './../../validations/party';
+import ValidateInput from './../../validations/updateParty';
 import Spinner from './../spinner/Spinner';
 import 'react-toastify/dist/ReactToastify.css';
 import './party.css';
 
-class CreatePartyForm extends Component {
+class UpdatePartyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:'',
       partyName: '',
       partyDetail: '',
       hqAddress: '',
-      logoUrl: '',
       errors: {},
       isLoading: false,
       invalid: false,
-      redirect: false
+      redirect: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.setUrl = this.setUrl.bind(this);
     this.isValid = this.isValid.bind(this);
     this.displayError = this.displayError.bind(this);
   }
@@ -38,9 +36,6 @@ class CreatePartyForm extends Component {
     }
   }
 
-  setUrl(url) {
-    this.setState({ logoUrl: url });
-  }
 
   isValid() {
     const { errors, isValid } = ValidateInput(this.state);
@@ -53,13 +48,14 @@ class CreatePartyForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
-      this.props.createParty(this.state).then(
+      this.setState({ errors: {}, isLoading: true});
+      this.props.updateParty(this.state, this.props.id).then(
         () => {
           this.props.addFlashMessage({
             type: 'success',
-            text: 'Party created successfully'
-          });   
+            text: `Party ${this.props.partyName} updated successfully`
+          });
+          this.setState({isLoading:false})
         },
         error => {
           this.setState({ errors: error.response.data, isLoading: false });
@@ -78,17 +74,16 @@ class CreatePartyForm extends Component {
     const { isLoading } = this.state;
 
     if (isLoading) {
-      return <Spinner/>;
+      return <Spinner />;
     }
     return (
       <Fragment>
-        <UploadLogo getUrl={this.setUrl} />
-        <form className="form-inline" onSubmit={this.onSubmit}>
+        <form className="form-inline" onSubmit={this.onSubmit} id={this.state.id}>
           <input
             type="text"
             placeholder="Enter Party Name"
             name="partyName"
-            value={this.state.partyName}
+            defaultValue={this.props.partyName}
             onChange={this.onChange}
           />
           {this.displayError(errors.partyName)}
@@ -96,22 +91,13 @@ class CreatePartyForm extends Component {
             type="text"
             placeholder="Enter Party Name in Full"
             name="partyDetail"
-            value={this.state.partyDetail}
+            defaultValue={this.props.partyDetail}
             onChange={this.onChange}
           />
           {this.displayError(errors.partyDetail)}
           <input
-            type="text"
-            placeholder="Enter Party Hq Address"
-            name="hqAddress"
-            value={this.state.hqAddress}
-            onChange={this.onChange}
-          />
-          {this.displayError(errors.hqAddress)}
-          {this.displayError(errors.logoUrl)}
-          <input
             type="submit"
-            value="Add Party to List"
+            value="Update Party"
             disabled={this.state.isLoading || this.state.invalid}
             className="button_3"
           />
@@ -123,8 +109,11 @@ class CreatePartyForm extends Component {
     );
   }
 }
-CreatePartyForm.propTypes = {
-  createParty: PropTypes.func.isRequired,
+UpdatePartyForm.propTypes = {
+  updateParty: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  partyName: PropTypes.string,
+  partyDetail:PropTypes.string,
 };
-export default CreatePartyForm;
+export default UpdatePartyForm;

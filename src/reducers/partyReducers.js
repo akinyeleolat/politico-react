@@ -1,8 +1,13 @@
-import { FETCH_PARTY, ADD_PARTY } from './../actions/types';
+import {
+  FETCH_PARTY,
+  ADD_PARTY,
+  EDIT_PARTY,
+  DELETE_PARTY
+} from './../actions/types';
 
 const initialState = {
   parties: [],
-  party:'',
+  party: ''
 };
 
 const PartyReducers = (state = initialState, action) => {
@@ -12,11 +17,18 @@ const PartyReducers = (state = initialState, action) => {
         ...state,
         parties: action.payload
       };
-      case ADD_PARTY:
-        return {
-          ...state,
-          party: action.payload
-        };
+    case ADD_PARTY:
+      return {
+        ...state,
+        party: action.payload
+      };
+    case EDIT_PARTY:
+      return {
+        ...state,
+        party: action.payload
+      };
+    case DELETE_PARTY:
+      return state;
     default:
       return state;
   }
