@@ -1,9 +1,8 @@
-import React, {Component, Fragment}from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from './../../actions/authActions';
-import {   NavItem, NavLink } from 'reactstrap';
-
+import { NavItem, NavLink } from 'reactstrap';
 
 class NavigationBar extends Component {
   logout(e) {
@@ -22,36 +21,51 @@ class NavigationBar extends Component {
     const userLinks = (
       <Fragment>
         <NavItem>
-          {isAdmin && (
-            <NavLink href={'/admin'}>
-              <i className="fas fa-plus-circle" />Admin Dashboard
-            </NavLink>
-          )}
+          <NavLink href={'/'}>
+            <i className="fas fa-plus-circle" />
+            {isAdmin?'View/Create Parties':'View Parties'}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href={'/offices'}>
+            <i className="fas fa-plus-circle" />
+            {isAdmin?'View/Create Office':'View offices'}
+          </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/profile">
-          <i className="fas fa-plus-circle" />
-          View Profile
+            <i className="fas fa-plus-circle" />
+            View Profile
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="#" onClick={this.logout.bind(this)}>
-          <i className="fas fa-sign-out-alt" />Logout
+            <i className="fas fa-sign-out-alt" />
+            Logout
           </NavLink>
         </NavItem>
-        </Fragment>
+      </Fragment>
     );
 
     const guestLinks = (
       <Fragment>
         <NavItem>
-          <NavLink href="/"><i className="fas fa-home" />Home</NavLink>
+          <NavLink href="/">
+            <i className="fas fa-home" />
+            Home
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/login"><i className="fas fa-home" />Login</NavLink>
+          <NavLink href="/login">
+            <i className="fas fa-home" />
+            Login
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/signup"><i className="fas fa-plus-circle" />Sign Up</NavLink>
+          <NavLink href="/signup">
+            <i className="fas fa-plus-circle" />
+            Sign Up
+          </NavLink>
         </NavItem>
       </Fragment>
     );

@@ -37,7 +37,7 @@ class Party extends Component {
         )
       }>
        
-         { partyListItem.lenght <1 ? (<Spinner/>) : (
+         { partyListItem.length <1 ? (<Spinner/>) : (
          <PartyList 
          key={partyListItem.id} 
          partyListItem={partyListItem}

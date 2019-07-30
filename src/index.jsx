@@ -6,12 +6,14 @@ import jwt from 'jsonwebtoken';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/authActions';
 import { getAllParty } from './actions/partyActions';
+import { getAllOffice } from './actions/officeActions';
 import store from './store';
 import Layout from './layout';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import ForgotPassword from './pages/forgotPassword';
 import Profile from './pages/profile';
+import Offices from './pages/offices';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import './index.css';
@@ -24,10 +26,14 @@ if (localStorage.jwt) {
 }
 
 store.dispatch(getAllParty());
+store.dispatch(getAllOffice());
 toast.configure({
   autoClose: 8000,
   draggable: false,
-});
+})
+
+
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
@@ -36,6 +42,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={Profile} />
+        <Route path="/offices" component={Offices} />
         <Route path="/forgotpassword" component={ForgotPassword} />
       </Switch>
     </BrowserRouter>

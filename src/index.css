@@ -360,33 +360,6 @@ select {
   float: right;
   padding: 5px;
 }
-
-#officeList table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: auto;
-  border: 1px solid #ccc;
-}
-
-#officeList th,
-td {
-  text-align: center;
-  padding: 5px;
-  border: 1px solid #ccc;
-}
-
-#officeList tr:nth-child(odd) {
-  background: rgb(218, 189, 189);
-}
-
-#officeList th {
-  background-color: #a12e0f;
-  color: white;
-  font-size: 15px;
-}
-#officeList button {
-  cursor: pointer;
-}
 /* userlist*/
 #userList {
   margin-top: 0;
