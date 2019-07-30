@@ -80,6 +80,7 @@ Currently,
 - run npm run start then navigate to localhost:3000 on browser
 
 # Screenshots
+<img width="1429" alt="Screenshot 2019-07-30 at 2 39 15 PM" src="https://user-images.githubusercontent.com/19696366/62135034-6a257d80-b2d9-11e9-8714-ae25402e5f14.png">
 
 # Author
 Akinyele Oluwatosin
