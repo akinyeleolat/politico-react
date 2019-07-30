@@ -11,9 +11,8 @@ class Divider extends Component {
 
     if (isAuthenticated) {
       const { firstname, lastname, user_image } = this.props.user;
-
-      firstName = firstname.toUpperCase();
-      lastName = lastname.toUpperCase();
+      firstName = firstname ? firstname.toUpperCase() : firstname;
+      lastName = lastname ? lastname.toUpperCase() : lastname;
       userImage = user_image;
     }
 

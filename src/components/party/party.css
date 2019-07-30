@@ -5,14 +5,16 @@
   justify-content: center;
 }
 
-.form-inline input {
+.form-inline input,select {
   vertical-align: middle;
   margin: 5px 10px 5px 0;
   padding: 10px;
-  background-color: #fff;
+  background-color: #fff !important;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 80%;
+  width: 80% !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-inline button {
@@ -31,10 +33,5 @@
 @media (max-width: 800px) {
   .form-inline input {
     margin: 10px 0;
-  }
-
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
   }
 }

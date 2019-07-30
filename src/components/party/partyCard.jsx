@@ -17,9 +17,9 @@ class PartyCard extends Component {
       <div className="card text-center" style={{ width: '15rem' }}>
         <img src={logourl} className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title">{partyname.toUpperCase()}</h5>
-          <p className="card-text">{partydetail.toUpperCase()}</p>
-          <p className="card-text">{hqaddress.toUpperCase()}</p>
+          <h5 className="card-title">{partyname && partyname.toUpperCase()}</h5>
+          <p className="card-text">{partydetail && partydetail.toUpperCase()}</p>
+          <p className="card-text">{hqaddress && hqaddress.toUpperCase()}</p>
         </div>
         {showAdmin && (
           <Fragment>

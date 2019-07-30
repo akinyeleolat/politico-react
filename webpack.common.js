@@ -1,13 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const {
+  appDirectory,
+  buildDirectory
+} = require('./webpack-build-utils/filePath');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: `${appDirectory}/index.jsx`,
   output: {
-    path: path.join(__dirname, './src'),
-    filename: '[name].chunk.js'
+    path: buildDirectory,
+    filename: '[name].chunk.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.jsx', '.js'],
@@ -18,9 +25,15 @@ module.exports = {
     }
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    }),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      // template: './src/index.html',
+      template: `${appDirectory}/index.html`,
+      filename: `${buildDirectory}/index.html`,
       inject: 'body'
     }),
     new Dotenv()
@@ -53,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader']
       }
     ]
   }

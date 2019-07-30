@@ -4,7 +4,14 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 9000,
-    publicPath: '/'
+    publicPath: '/',
+    proxy: {
+      '/api/**': {
+        target: 'https://ngpolitico.herokuapp.com/',
+        secure: false,
+        changeOrigin: true,
+      }
+    }
   },
   plugins: [new ErrorOverlayPlugin()]
 };

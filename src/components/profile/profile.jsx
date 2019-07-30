@@ -9,9 +9,9 @@ class Profile extends Component {
     let userFullName;
     if (this.props.user) {
       userImage = this.props.user.user_image;
-      userFullName = firstname
-        .toUpperCase()
-        .concat(' ', lastname.toUpperCase());
+      if (firstname && lastname) {
+        userFullName = firstname.concat(' ', lastname);
+      }
     }
 
     return (
@@ -22,7 +22,7 @@ class Profile extends Component {
               <div className="isCentered" id="userImage">
                 <img src={userImage} />
               </div>
-              <p className="alignTxtLeft">Welcome, {userFullName}</p>
+              <p className="alignTxtLeft">Welcome, {userFullName && userFullName.toUpperCase()}</p>
               <div>
                 <div>Email: {email}</div>
               </div>
@@ -33,13 +33,13 @@ class Profile extends Component {
                 <h4>Your Vote Activity</h4>
               </div>
               <div>
-                <span className="span">Offices:</span> 5
+                <span className="span">Offices:</span> NA
               </div>
               <div>
-                <span className="span">Candidates:</span>5
+                <span className="span">Candidates:</span>NA
               </div>
               <div>
-                <span className="span">Votes:</span>5
+                <span className="span">Votes:</span>NA
               </div>
             </div>
           </div>
