@@ -31,12 +31,13 @@ module.exports = {
     }),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      // template: './src/index.html',
       template: `${appDirectory}/index.html`,
       filename: `${buildDirectory}/index.html`,
       inject: 'body'
     }),
-    new Dotenv()
+    new Dotenv({
+      path: path.resolve(__dirname, '..', '.env'),
+  })
   ],
   module: {
     rules: [
