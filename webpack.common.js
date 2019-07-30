@@ -27,7 +27,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'style.css'
     }),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
@@ -35,9 +35,7 @@ module.exports = {
       filename: `${buildDirectory}/index.html`,
       inject: 'body'
     }),
-    new Dotenv({
-      path: path.resolve(__dirname, '.env'),
-  })
+    new Dotenv()
   ],
   module: {
     rules: [
@@ -64,10 +62,6 @@ module.exports = {
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         loader: ['file-loader']
-      },
-      {
-        test: /\.js$/,
-        use: ['babel-loader']
       }
     ]
   }

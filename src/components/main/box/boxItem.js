@@ -1,5 +1,5 @@
-import boxImg1 from 'Images/userProfile.jpg';
-import boxImg2 from 'Images/userProfile2.jpg';
+import boxImg1 from 'Images/userprofile.jpg';
+import boxImg2 from 'Images/userprofile2.jpg';
 import boxImg3 from 'Images/thumb3.jpg';
 
 const boxItem = [
