@@ -36,7 +36,7 @@ module.exports = {
       inject: 'body'
     }),
     new Dotenv({
-      path: path.resolve(__dirname, '..', '.env'),
+      path: path.resolve(__dirname, '.env'),
   })
   ],
   module: {
