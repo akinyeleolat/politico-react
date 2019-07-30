@@ -34,12 +34,12 @@ Politico app project is broken down into small task with pivotal tracker board. 
 The application is hosted online [ Politico ] (https://ngpoliticospa.herokuapp.com/)
 LOGIN TO DEMO ADMIN
 <ul>
-<li>username:admin@admin.com</li>
+<li>username:admin@politico.com</li>
 <li>password:politico</li>
 </ul>
 LOGIN TO DEMO USER
 <ul>
-<li>username:user@user.com</li>
+<li>username:user@politico.com</li>
 <li>password:politico</li>
 </ul>
 - or

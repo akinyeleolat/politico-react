@@ -28,10 +28,6 @@
   "author": "Oluwatosin Akinyele",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "babel-loader": "^8.0.6",
-    "babel-preset-stage-0": "^6.24.1",
     "error-overlay-webpack-plugin": "^0.4.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -50,6 +46,10 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-loader": "^8.0.6",
+    "babel-preset-stage-0": "^6.24.1",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
     "@babel/plugin-transform-arrow-functions": "^7.2.0",
@@ -63,7 +63,6 @@
     "cors": "^2.8.5",
     "css-loader": "^2.1.1",
     "dateformat": "^3.0.3",
-    "dotenv": "^8.0.0",
     "dotenv-webpack": "^1.7.0",
     "file-loader": "^3.0.1",
     "history": "^4.9.0",
