@@ -4,7 +4,6 @@ import LoginForm from './loginForm';
 import { userLoginRequest } from './../../actions/authActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addFlashMessage } from './../../actions/flashMessages';
 
 class LoginRightComponent extends Component {
   render() {
@@ -13,7 +12,6 @@ class LoginRightComponent extends Component {
         <h1>Sign in to Politico</h1>
         <LoginForm
           userLoginRequest={this.props.userLoginRequest}
-          addFlashMessage={this.props.addFlashMessage}
         />
         <p className="alignTxtRight">
           <Link to="/">
@@ -29,10 +27,9 @@ class LoginRightComponent extends Component {
 
 LoginRightComponent.propTypes = {
   userLoginRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { userLoginRequest, addFlashMessage }
+  { userLoginRequest }
 )(LoginRightComponent);

@@ -5,13 +5,12 @@ import Modal from './../modal';
 import UpdatePartyForm from './updatePartyForm';
 import DeletePartyComponent from './deleteParty';
 import { updateParty, deleteParty } from './../../actions/partyActions';
-import { addFlashMessage } from './../../actions/flashMessages';
 
 class PartyCard extends Component {
   render() {
     const showAdmin = this.props.showAdmin;
     const { id, logourl, partyname, partydetail, hqaddress } = this.props.party;
-    const { updateParty, deleteParty, addFlashMessage } = this.props;
+    const { updateParty, deleteParty } = this.props;
 
     return (
       <div className="card text-center" style={{ width: '15rem' }}>
@@ -35,7 +34,6 @@ class PartyCard extends Component {
                   partyName={partyname}
                   partyDetail={partydetail}
                   updateParty={updateParty}
-                  addFlashMessage={addFlashMessage}
                 />
               </Modal>
               <Modal
@@ -48,7 +46,6 @@ class PartyCard extends Component {
                   partyName={partyname}
                   partyDetail={partydetail}
                   deleteParty={deleteParty}
-                  addFlashMessage={addFlashMessage}
                 />
               </Modal>
             </div>
@@ -61,12 +58,11 @@ class PartyCard extends Component {
 PartyCard.propTypes = {
   party: PropTypes.object.isRequired,
   showAdmin: PropTypes.bool,
-  addFlashMessage: PropTypes.func.isRequired,
   updateParty: PropTypes.func.isRequired,
   deleteParty: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { updateParty, deleteParty, addFlashMessage }
+  { updateParty, deleteParty }
 )(PartyCard);

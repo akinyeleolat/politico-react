@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import UploadLogo from './../uploadImage';
-import { toast } from 'react-toastify';
-import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/party';
 import Spinner from './../spinner/Spinner';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './party.css';
 
@@ -34,7 +33,7 @@ class CreatePartyForm extends Component {
 
   displayError(value) {
     if (value) {
-      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+      return (<span className='alerts'>{value}</span>)
     }
   }
 
@@ -56,19 +55,14 @@ class CreatePartyForm extends Component {
       this.setState({ errors: {}, isLoading: true });
       this.props.createParty(this.state).then(
         () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: 'Party created successfully'
-          });   
+          toast.success('Party created successfully')
+          this.setState({isLoading:false})
         },
         error => {
           this.setState({ errors: error.response.data, isLoading: false });
           const { errors } = this.state;
           const displayServerError = errors.error;
-          this.props.addFlashMessage({
-            type: 'error',
-            text: `${displayServerError}`
-          });
+          toast.error(displayServerError)
         }
       );
     }
@@ -78,7 +72,7 @@ class CreatePartyForm extends Component {
     const { isLoading } = this.state;
 
     if (isLoading) {
-      return <Spinner/>;
+      return <Spinner />;
     }
     return (
       <Fragment>
@@ -116,15 +110,11 @@ class CreatePartyForm extends Component {
             className="button_3"
           />
         </form>
-        <div style={{ display: 'none' }}>
-          <FlashMessagesList />
-        </div>
       </Fragment>
     );
   }
 }
 CreatePartyForm.propTypes = {
   createParty: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
 };
 export default CreatePartyForm;

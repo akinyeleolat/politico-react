@@ -5,15 +5,19 @@ import OfficeList from './officeList';
 import DashBoardContainer from './../dashBoard';
 import OfficeForm from './createOfficeForm';
 import { createOffice, getAllOffice } from './../../actions/officeActions';
-import { addFlashMessage } from './../../actions/flashMessages';
 import Spinner from './../spinner/Spinner';
 import Modal from './../modal';
 
 class Offices extends Component {
   componentDidMount() {
-    this.props.getAllOffice()
+    this.props.getAllOffice();
   }
 
+  componentDidUpdate(nextProps) {
+    if (this.props !== nextProps) {
+      this.props.getAllOffice();
+    }
+  }
   render() {
     const officeListItem = this.props.offices;
     const isAuthenticated = this.props.isAuthenticated;
@@ -22,7 +26,7 @@ class Offices extends Component {
     if (isAuthenticated) {
       isAdmin = this.props.user.isAdmin;
     }
-  
+
     return (
       <Fragment>
         <DashBoardContainer
@@ -34,21 +38,20 @@ class Offices extends Component {
                 title={'Create Office'}
                 color={'danger'}
               >
-                <OfficeForm
-            createOffice={this.props.createOffice}
-            addFlashMessage={this.props.addFlashMessage}
-          />
+                <OfficeForm createOffice={this.props.createOffice} />
               </Modal>
             )
           }
         >
-          {officeListItem.length<1 ? (<Spinner/>) : (
-         <OfficeList 
-         key={officeListItem.id} 
-         officeListItem={officeListItem}
-         isAdmin={isAdmin} 
-         />
-         )}
+          {officeListItem.length < 1 ? (
+            <Spinner />
+          ) : (
+            <OfficeList
+              key={officeListItem.id}
+              officeListItem={officeListItem}
+              isAdmin={isAdmin}
+            />
+          )}
         </DashBoardContainer>
       </Fragment>
     );
@@ -58,13 +61,12 @@ class Offices extends Component {
 Offices.propTypes = {
   offices: PropTypes.array.isRequired,
   createOffice: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   getAllOffice: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ offices, authUser}) =>  ({
+const mapStateToProps = ({ offices, authUser }) => ({
   offices: offices.offices,
   isAuthenticated: authUser.isAuthenticated,
   user: authUser.user
@@ -72,5 +74,5 @@ const mapStateToProps = ({ offices, authUser}) =>  ({
 
 export default connect(
   mapStateToProps,
-  { getAllOffice, createOffice, addFlashMessage }
+  { getAllOffice, createOffice }
 )(Offices);
