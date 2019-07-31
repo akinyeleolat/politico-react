@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FlashMessagesList from '../../flash/flashMessagesList';
 import Spinner from '../spinner/Spinner';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './party.css';
 
@@ -21,20 +21,14 @@ class DeletePartyForm extends Component {
     this.setState({ isLoading: true });
     this.props.deleteParty(this.props.id).then(
       () => {
-        this.props.addFlashMessage({
-          type: 'success',
-          text: `Party ${this.props.partyName} deleted successfully`
-        });
+        toast.success(`Party ${this.props.partyName} deleted successfully`)
         this.setState({ isLoading: false });
       },
       error => {
         this.setState({ errors: error.response.data, isLoading: false });
         const { errors } = this.state;
         const displayServerError = errors.error;
-        this.props.addFlashMessage({
-          type: 'error',
-          text: `${displayServerError}`
-        });
+        toast.error(displayServerError)
       }
     );
   }
@@ -55,16 +49,12 @@ class DeletePartyForm extends Component {
         >
           Yes
         </button>
-        <div style={{ display: 'none' }}>
-          <FlashMessagesList />
-        </div>
       </Fragment>
     );
   }
 }
 DeletePartyForm.propTypes = {
   deleteParty: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   id: PropTypes.number,
   partyName: PropTypes.string,
   partyDetail: PropTypes.string

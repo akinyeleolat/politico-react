@@ -15,7 +15,8 @@ import ForgotPassword from './pages/forgotPassword';
 import Profile from './pages/profile';
 import Offices from './pages/offices';
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+//  import FlashMessagesList from './flash/flashMessagesList';
 import './index.css';
 
 const app = document.getElementById('app');
@@ -28,7 +29,7 @@ if (localStorage.jwt) {
 store.dispatch(getAllParty());
 store.dispatch(getAllOffice());
 toast.configure({
-  autoClose: 8000,
+  autoClose: 2000,
   draggable: false,
 })
 
@@ -46,6 +47,8 @@ ReactDOM.render(
         <Route path="/forgotpassword" component={ForgotPassword} />
       </Switch>
     </BrowserRouter>
+    {/* <FlashMessagesList/> */}
+    <ToastContainer/>
   </Provider>,
   app
 );

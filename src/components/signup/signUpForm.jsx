@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
 import ImageUpload from '../uploadImage';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/signup';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class SignUpForm extends Component {
@@ -32,9 +31,10 @@ class SignUpForm extends Component {
 
   displayError(value) {
     if (value) {
-      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+      return (<span className='alerts'>{value}</span>)
     }
   }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -46,15 +46,13 @@ class SignUpForm extends Component {
       this.props.userSignUpRequest(this.state).then(
         () => {
           this.setState({ redirect: true });
+          toast.success('Account created successfully')
         },
         error => {
           this.setState({ errors: error.response.data, isLoading: false });
           const { errors } = this.state;
           const displayServerError = errors.error;
-          this.props.addFlashMessage({
-            type: 'error',
-            text: `${displayServerError}`
-          });
+          toast.error(displayServerError)
         }
       );
     }
@@ -152,7 +150,6 @@ class SignUpForm extends Component {
           <div />
         </form>
         <div style={{ display: 'none' }}>
-          <FlashMessagesList />
         </div>
       </div>
     );
@@ -161,7 +158,6 @@ class SignUpForm extends Component {
 
 SignUpForm.propTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
 };
 
 export default SignUpForm;

@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
-import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/updateParty';
 import Spinner from './../spinner/Spinner';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './party.css';
 
@@ -32,7 +31,7 @@ class UpdatePartyForm extends Component {
 
   displayError(value) {
     if (value) {
-      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+      return (<span className='alerts'>{value}</span>)
     }
   }
 
@@ -51,20 +50,14 @@ class UpdatePartyForm extends Component {
       this.setState({ errors: {}, isLoading: true});
       this.props.updateParty(this.state, this.props.id).then(
         () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: `Party ${this.props.partyName} updated successfully`
-          });
+          toast.success(`Party ${this.props.partyName} updated successfully`)
           this.setState({isLoading:false})
         },
         error => {
           this.setState({ errors: error.response.data, isLoading: false });
           const { errors } = this.state;
           const displayServerError = errors.error;
-          this.props.addFlashMessage({
-            type: 'error',
-            text: `${displayServerError}`
-          });
+          toast.error(displayServerError)
         }
       );
     }
@@ -102,16 +95,12 @@ class UpdatePartyForm extends Component {
             className="button_3"
           />
         </form>
-        <div style={{ display: 'none' }}>
-          <FlashMessagesList />
-        </div>
       </Fragment>
     );
   }
 }
 UpdatePartyForm.propTypes = {
   updateParty: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   id: PropTypes.number,
   partyName: PropTypes.string,
   partyDetail:PropTypes.string,

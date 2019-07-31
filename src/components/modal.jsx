@@ -10,16 +10,12 @@ class ModalComponent extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
-    this.refreshPage = this.refreshPage.bind(this)
   }
 
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-  }
-  refreshPage(){
-    window.location.reload();
   }
 
   render() {
@@ -32,7 +28,7 @@ class ModalComponent extends Component {
             {this.props.children}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.toggle && this.refreshPage}>Close</Button>
+            <Button color="secondary" onClick={this.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>

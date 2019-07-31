@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
-import FlashMessagesList from './../../flash/flashMessagesList';
 import ValidateInput from './../../validations/office';
 import Spinner from './../spinner/Spinner';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class CreateOfficeForm extends Component {
@@ -28,7 +27,7 @@ class CreateOfficeForm extends Component {
 
   displayError(value) {
     if (value) {
-      <div {...{ display: 'none' }}>{toast.error(value)}</div>;
+      return (<span className='alerts'>{value}</span>)
     }
   }
 
@@ -46,19 +45,14 @@ class CreateOfficeForm extends Component {
       this.setState({ errors: {}, isLoading: true });
       this.props.createOffice(this.state).then(
         () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: `${this.state.officeName} Office created successfully`
-          });
+          toast.success(`${this.state.officeName} created successfully`)
+          this.setState({isLoading:false})
         },
         error => {
           this.setState({ errors: error.response.data, isLoading: false });
           const { errors } = this.state;
           const displayServerError = errors.error;
-          this.props.addFlashMessage({
-            type: 'error',
-            text: `${displayServerError}`
-          });
+          toast.error(displayServerError)
         }
       );
     }
@@ -99,15 +93,11 @@ class CreateOfficeForm extends Component {
             className="button_3"
           />
         </form>
-        <div style={{ display: 'none' }}>
-          <FlashMessagesList />
-        </div>
       </Fragment>
     );
   }
 }
 CreateOfficeForm.propTypes = {
   createOffice: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
 };
 export default CreateOfficeForm;
